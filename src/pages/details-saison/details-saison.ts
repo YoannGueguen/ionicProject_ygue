@@ -33,11 +33,10 @@ saison;
                 if(this.saison != null){
                     this.saison.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.serieId;
                 }
-                console.log(this.saison);
             })
         ;
     }
     openDetails(episode: Object) {
-        this.navCtrl.push(EpisodePage,{serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode});
+        this.navCtrl.push(EpisodePage,{serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode.Episode});
     }
 }

@@ -11,7 +11,6 @@ import { Injectable } from '@angular/core';
 export class SeriesProvider {
     apiUrl = 'http://www.omdbapi.com/?apikey=75522b56&';
   constructor(public http: HttpClient) {
-    console.log('Hello SeriesProvider Provider');
   }
     getSeries(search: string) {
         return new Promise(resolve => {

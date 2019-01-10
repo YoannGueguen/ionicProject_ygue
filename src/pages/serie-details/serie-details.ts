@@ -34,7 +34,6 @@ export class SerieDetailsPage {
                 }
                 for (let i=0;i <this.serie.totalSeasons;i++ ){
                     this.seasonNumber.push(i+1);
-                    console.log(this.seasonNumber);
                 }
             });
     }

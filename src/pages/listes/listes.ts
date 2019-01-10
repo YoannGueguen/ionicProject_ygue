@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import {StorageProvider} from "../../providers/storage/storage";
+import {EpisodePage} from "../episode/episode";
 
 /**
  * Generated class for the ListesPage page.
@@ -16,15 +17,25 @@ import {StorageProvider} from "../../providers/storage/storage";
 })
 export class ListesPage {
     public tabStorage = [];
-    constructor(private storage: StorageProvider) {
+    constructor(public navCtrl: NavController, private storage: StorageProvider) {
     }
 
-    ionViewDidLoad() {
-      this.storage.get('historique').then((data)=>{this.tabStorage =data});
+    ionViewWillEnter() {
+      this.storage.get('favori').then((data)=>{this.tabStorage =data});
   }
 
-  removeFavorite(itemId: number){
-        this.tabStorage.splice(itemId,1);
-        this.storage.set('historique', this.tabStorage);
+  removeFavorite(history: Object){
+        this.tabStorage.splice(this.tabStorage.indexOf(history),1);
+        this.storage.set('favori', this.tabStorage);
+  }
+  openDetails(history: Object){
+      if(history.type == 'episode'){
+        this.navCtrl.push(EpisodePage,{serieId: history.id, seasonId: history.seasonId, episodeNumber: history.episodeId});
+          console.log(history);
+      }
+  }
+  removeAll(){
+      this.storage.clear();
+      this.tabStorage = [];
   }
 }

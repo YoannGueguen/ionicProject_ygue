@@ -43,11 +43,19 @@
           <div>{{episode.Plot}}</div>
         </ion-col>
       </ion-row>
-      <ion-row>
+      <ion-row *ngIf="!favori">
         <ion-col>
           <button ion-item class="card" (click)="addFavorite()">
             <ion-icon name="star"></ion-icon>
-            ajouter en favorie
+            ajouter en favori
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="favori">
+        <ion-col>
+          <button ion-item class="card" (click)="removeFavorite()">
+            <ion-icon name="trash"></ion-icon>
+            supprimer le favori
           </button>
         </ion-col>
       </ion-row>

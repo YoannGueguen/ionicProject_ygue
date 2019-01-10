@@ -20,39 +20,62 @@ export class EpisodePage {
     seasonNumber;
     serieId;
     episode;
-    public tab = {};
-    public history = [];
+    tab = {};
+    history = [];
+    favori:boolean =false;
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public detailsProvider: DetailsProvider, private storageProvider: StorageProvider) {
   }
     goBack() {
         this.navCtrl.pop();
     }
-  ionViewDidLoad() {
+  ionViewWillEnter() {
       this.serieId = this.navParams.get('serieId');
+      console.log(this.navParams.get('serieId'));
       this.seasonNumber = this.navParams.get('seasonId');
+      console.log(this.navParams.get('seasonId'));
       this.episodeNumber = this.navParams.get('episodeNumber');
-      this.detailsProvider.getEpisode(this.serieId, this.seasonNumber, this.episodeNumber.Episode)
+      console.log(this.navParams.get('episodeNumber'));
+      this.detailsProvider.getEpisode(this.serieId, this.seasonNumber, this.episodeNumber)
           .then(data =>{
               this.episode = data;
-              console.log(this.episode);
-          })
-      ;
+              this.storageProvider.get('favori').then((data) => {
+                  if(data != null)
+                  this.history = data;
+                      for(let item of this.history){
+                          console.log(item.title);
+                          if(item.title == this.episode.Title){
+                              this.favori = true;
+                          }
+                      }
+                      console.log(this.episode.Title);
+              });
+          });
+
 
   }
     addFavorite() {
-
-        this.tab = {
-            'date' : new Date(),
-            'title' : this.episode.Title,
-            'type' : "episode",
-            'id' : this.serieId,
-            'poster': this.episode.Poster,
-            'seasonId': this.seasonNumber,
-            'episodeId': this.episodeNumber.Episode
-        };
-
-        this.history.push(this.tab);
-        this.storageProvider.set('favorie',this.history);
+        this.storageProvider.get('favori').then((data) => {
+            if(data != null){
+                this.history = data;
+            }
+            this.tab = {
+                'date' : new Date(),
+                'title' : this.episode.Title,
+                'type' : "episode",
+                'id' : this.serieId,
+                'seasonId': this.seasonNumber,
+                'episodeId': this.episodeNumber
+            };
+            this.history.push(this.tab);
+            console.log(this.tab);
+            this.storageProvider.set('favori',this.history);
+            this.favori = true;
+        });
+    }
+    removeFavorite(){
+        this.tabStorage.splice(this.tabStorage.indexOf(history),1);
+        this.storage.set('favori', this.tabStorage);
     }
 }

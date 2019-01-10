@@ -11,7 +11,6 @@ import { Injectable } from '@angular/core';
 export class MoviesProvider {
     apiUrl = 'http://www.omdbapi.com/?apikey=75522b56&';
   constructor(public http: HttpClient) {
-    console.log('Hello MoviesProvider Provider');
   }
 
     public getMovies(search: string) {
