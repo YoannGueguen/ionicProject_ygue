@@ -31,6 +31,7 @@
       </ion-row>
       <ion-row>
         <ion-col>
+          <ion-icon name="star"></ion-icon>
           <div>Note Imdb : {{episode.imdbRating}}</div>
         </ion-col>
         <ion-col>
@@ -40,6 +41,14 @@
       <ion-row>
         <ion-col>
           <div>{{episode.Plot}}</div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <button ion-item class="card" (click)="addFavorite()">
+            <ion-icon name="star"></ion-icon>
+            ajouter en favorie
+          </button>
         </ion-col>
       </ion-row>
     </div>

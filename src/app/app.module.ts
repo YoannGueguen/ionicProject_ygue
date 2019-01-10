@@ -18,6 +18,7 @@ import { DetailsProvider } from '../providers/details/details';
 import {DetailsSaisonPage} from "../pages/details-saison/details-saison";
 import {SerieDetailsPage} from "../pages/serie-details/serie-details";
 import {EpisodePage} from "../pages/episode/episode";
+import { StorageProvider } from '../providers/storage/storage';
 
 
 @NgModule({
@@ -55,7 +56,8 @@ import {EpisodePage} from "../pages/episode/episode";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     MoviesProvider,
     SeriesProvider,
-    DetailsProvider
+    DetailsProvider,
+    StorageProvider
   ]
 })
 export class AppModule {}

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage } from 'ionic-angular';
+import {StorageProvider} from "../../providers/storage/storage";
 
 /**
  * Generated class for the ListesPage page.
@@ -14,12 +15,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'listes.html',
 })
 export class ListesPage {
+    public tabStorage = [];
+    constructor(private storage: StorageProvider) {
+    }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    ionViewDidLoad() {
+      this.storage.get('historique').then((data)=>{this.tabStorage =data});
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ListesPage');
+  removeFavorite(itemId: number){
+        this.tabStorage.splice(itemId,1);
+        this.storage.set('historique', this.tabStorage);
   }
-
 }

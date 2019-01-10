@@ -14,5 +14,16 @@
 
 
 <ion-content padding>
+  <ion-list *ngFor="let history of tabStorage">
 
+    <button>
+      <ion-row>
+        <ion-col><img src="{{history.poster}}"/> </ion-col>
+        <ion-col>
+          <ion-item>{{history.date | date: 'dd/MM/yyyy HH:mm'}}</ion-item>
+          <ion-item>{{history.title}}</ion-item>
+        </ion-col>
+      </ion-row>
+    </button>
+  </ion-list>
 </ion-content>
