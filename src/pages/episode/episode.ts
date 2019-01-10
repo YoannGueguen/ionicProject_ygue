@@ -74,8 +74,12 @@ export class EpisodePage {
             this.favori = true;
         });
     }
-    removeFavorite(){
-        this.tabStorage.splice(this.tabStorage.indexOf(history),1);
-        this.storage.set('favori', this.tabStorage);
+    removeFavorite(episode: episode){
+      const tabStorage = [];
+        this.storageProvider.get('favori').then((data)=>{tabStorage =data});
+
+        tabStorage.splice(tabStorage.indexOf(episode),1);
+        this.storageProvider.set('favori', tabStorage);
+        this.favori = false;
     }
 }

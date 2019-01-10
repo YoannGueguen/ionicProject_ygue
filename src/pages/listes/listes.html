@@ -7,8 +7,14 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-row>
+      <ion-col>
     <ion-title>Favoris</ion-title>
-    <button ion-item (click)="removeAll()"></button>
+      </ion-col>
+      <ion-col>
+        <ion-item (click)="removeAll()" color="danger"><ion-icon name="trash"></ion-icon> Tout supprimer</ion-item>
+      </ion-col>
+    </ion-row>
   </ion-navbar>
 
 </ion-header>
