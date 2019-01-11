@@ -14,6 +14,7 @@
       <ion-col>
         <ion-item (click)="removeAll()" color="danger"><ion-icon name="trash"></ion-icon> Tout supprimer</ion-item>
       </ion-col>
+      <ion-col></ion-col>
     </ion-row>
   </ion-navbar>
 
@@ -23,9 +24,11 @@
 <ion-content padding>
   <ion-list *ngFor="let history of tabStorage">
     <ion-item-sliding>
-      <ion-badge>{{history.type}}</ion-badge>
-            <ion-item (click)="openDetails(history)">{{history.date | date: 'dd/MM/yyyy HH:mm'}}
-            {{history.title}}</ion-item>
+            <ion-item (click)="openDetails(history.id, history.seasonId, history.episodeId, history.type)">
+              <ion-badge>{{history.type}}</ion-badge>
+              {{history.date | date: 'dd/MM/yyyy HH:mm'}}
+              {{history.title}}
+            </ion-item>
       <ion-item-options side="right">
         <button ion-button icon-end color="danger" (click)="removeFavorite(history)">
           Delete

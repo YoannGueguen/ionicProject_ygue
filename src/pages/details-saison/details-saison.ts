@@ -16,7 +16,7 @@ import {EpisodePage} from "../episode/episode";
   templateUrl: 'details-saison.html',
 })
 export class DetailsSaisonPage {
-saison;
+    saison;
     serieId;
     seasonId;
   constructor(public navCtrl: NavController, public navParams: NavParams,public detailsProvider: DetailsProvider) {
@@ -30,13 +30,12 @@ saison;
         this.detailsProvider.getOneSeason(this.serieId, this.seasonId)
             .then(data =>{
                 this.saison = data;
-                if(this.saison != null){
+                if(this.saison != null)
                     this.saison.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.serieId;
-                }
             })
         ;
     }
     openDetails(episode: Object) {
-        this.navCtrl.push(EpisodePage,{serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode.Episode});
+        this.navCtrl.push(EpisodePage,{serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode['Episode']});
     }
 }

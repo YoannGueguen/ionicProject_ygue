@@ -12,14 +12,16 @@ import {ListesPage} from "../pages/listes/listes";
 import {MoviesPage} from "../pages/movies/movies";
 import {SeriesPage} from "../pages/series/series";
 import {DetailsPage} from "../pages/details/details";
+import {DetailsSaisonPage} from "../pages/details-saison/details-saison";
+import {SerieDetailsPage} from "../pages/serie-details/serie-details";
+import {EpisodePage} from "../pages/episode/episode";
 
 import { MoviesProvider } from '../providers/movies/movies';
 import { SeriesProvider } from '../providers/series/series';
 import { DetailsProvider } from '../providers/details/details';
-import {DetailsSaisonPage} from "../pages/details-saison/details-saison";
-import {SerieDetailsPage} from "../pages/serie-details/serie-details";
-import {EpisodePage} from "../pages/episode/episode";
 import { StorageProvider } from '../providers/storage/storage';
+
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 
 @NgModule({
@@ -59,7 +61,8 @@ import { StorageProvider } from '../providers/storage/storage';
     MoviesProvider,
     SeriesProvider,
     DetailsProvider,
-    StorageProvider
+    StorageProvider,
+    SocialSharing
   ]
 })
 export class AppModule {}

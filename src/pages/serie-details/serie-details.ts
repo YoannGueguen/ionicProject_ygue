@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DetailsProvider} from "../../providers/details/details";
 import {DetailsSaisonPage} from "../details-saison/details-saison";
+import {StorageProvider} from "../../providers/storage/storage";
 
 /**
  * Generated class for the SerieDetailsPage page.
@@ -18,7 +19,11 @@ import {DetailsSaisonPage} from "../details-saison/details-saison";
 export class SerieDetailsPage {
     serie;
     seasonNumber = [];
-    constructor(public navCtrl: NavController, public navParams: NavParams,public detailsProvider: DetailsProvider) {
+    tab = {};
+    history = [];
+    favori:boolean =false;
+
+    constructor(public navCtrl: NavController, public navParams: NavParams,public detailsProvider: DetailsProvider, private storageProvider: StorageProvider) {
     }
 
     goBack() {
@@ -39,5 +44,32 @@ export class SerieDetailsPage {
     }
     openDetails(serieId:string, seasonId: number) {
         this.navCtrl.push(DetailsSaisonPage,{serieId: serieId, seasonId: seasonId});
+    }
+    addFavorite() {
+        this.storageProvider.get('favori').then((data) => {
+            if(data != null){
+                this.history = data;
+            }
+            this.tab = {
+                'date' : new Date(),
+                'title' : this.serie.Title,
+                'type' : "serie",
+                'id' : this.serie.imdbID,
+                'seasonId': null,
+                'episodeId': null
+            };
+            this.history.push(this.tab);
+            console.log(this.tab);
+            this.storageProvider.set('favori',this.history);
+            this.favori = true;
+        });
+    }
+    removeFavorite(serie: any){
+        let tabStorage = [];
+        this.storageProvider.get('favori').then((data)=>{tabStorage =data});
+
+        tabStorage.splice(tabStorage.indexOf(serie),1);
+        this.storageProvider.set('favori', tabStorage);
+        this.favori = false;
     }
 }

@@ -17,7 +17,13 @@
   <ion-card class='card' *ngIf="episode" class="movie-info">
 
     <img *ngIf="episode.Poster" src="{{episode.Poster}}"/>
-
+    <ion-row *ngIf="episode.Poster">
+      <ion-col>
+        <button ion-button (click)="share(episode.Poster)" color="primary">
+          <ion-icon name="download"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
     <div class="card-subtitle">
       <ion-row>
         <ion-col>

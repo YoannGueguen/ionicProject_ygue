@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import {StorageProvider} from "../../providers/storage/storage";
 import {EpisodePage} from "../episode/episode";
+import {DetailsPage} from "../details/details";
+import {SeriesPage} from "../series/series";
 
 /**
  * Generated class for the ListesPage page.
@@ -28,10 +30,14 @@ export class ListesPage {
         this.tabStorage.splice(this.tabStorage.indexOf(history),1);
         this.storage.set('favori', this.tabStorage);
   }
-  openDetails(history: Object){
-      if(history.type == 'episode'){
-        this.navCtrl.push(EpisodePage,{serieId: history.id, seasonId: history.seasonId, episodeNumber: history.episodeId});
-          console.log(history);
+  openDetails(historyId, seasonId, episodeId, type){
+      console.log(type);
+      if(type == 'episode'){
+        this.navCtrl.push(EpisodePage,{serieId: historyId, seasonId: seasonId, episodeNumber: episodeId});
+      }else if(type == 'film'){
+          this.navCtrl.push(DetailsPage,{movieId: historyId})
+      }else{
+          this.navCtrl.push(SeriesPage,{serieId: historyId})
       }
   }
   removeAll(){

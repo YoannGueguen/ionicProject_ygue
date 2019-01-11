@@ -71,6 +71,22 @@
           </ion-list>
         </ion-col>
       </ion-row>
+      <ion-row *ngIf="!favori">
+        <ion-col>
+          <button ion-item class="card" (click)="addFavorite()">
+            <ion-icon name="star"></ion-icon>
+            ajouter en favori
+          </button>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="favori">
+        <ion-col>
+          <button ion-item class="card" (click)="removeFavorite(serie)">
+            <ion-icon name="trash"></ion-icon>
+            supprimer le favori
+          </button>
+        </ion-col>
+      </ion-row>
     </div>
   </ion-card>
 
