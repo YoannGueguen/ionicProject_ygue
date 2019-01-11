@@ -21,7 +21,6 @@ export class ListesPage {
     public tabStorage = [];
     constructor(public navCtrl: NavController, private storage: StorageProvider) {
     }
-
     ionViewWillEnter() {
       this.storage.get('favori').then((data)=>{this.tabStorage =data});
   }
