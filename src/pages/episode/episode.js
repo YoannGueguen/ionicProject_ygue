@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DetailsProvider } from "../../providers/details/details";
 import { StorageProvider } from "../../providers/storage/storage";
+import { SocialSharing } from "@ionic-native/social-sharing";
 /**
  * Generated class for the EpisodePage page.
  *
@@ -18,11 +19,12 @@ import { StorageProvider } from "../../providers/storage/storage";
  * Ionic pages and navigation.
  */
 var EpisodePage = /** @class */ (function () {
-    function EpisodePage(navCtrl, navParams, detailsProvider, storageProvider) {
+    function EpisodePage(navCtrl, navParams, detailsProvider, storageProvider, socialSharing) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.detailsProvider = detailsProvider;
         this.storageProvider = storageProvider;
+        this.socialSharing = socialSharing;
         this.tab = {};
         this.history = [];
         this.favori = false;
@@ -33,6 +35,7 @@ var EpisodePage = /** @class */ (function () {
     EpisodePage.prototype.ionViewWillEnter = function () {
         var _this = this;
         this.serieId = this.navParams.get('serieId');
+        console.log(this.serieId);
         this.seasonNumber = this.navParams.get('seasonId');
         this.episodeNumber = this.navParams.get('episodeNumber');
         this.detailsProvider.getEpisode(this.serieId, this.seasonNumber, this.episodeNumber)
@@ -77,13 +80,19 @@ var EpisodePage = /** @class */ (function () {
         this.storageProvider.set('favori', tabStorage);
         this.favori = false;
     };
+    EpisodePage.prototype.share = function (poster) {
+        this.socialSharing.share('Partage de l image', null, poster, null)
+            .then(function () {
+        }).catch(function () {
+        });
+    };
     EpisodePage = __decorate([
         IonicPage(),
         Component({
             selector: 'page-episode',
             templateUrl: 'episode.html',
         }),
-        __metadata("design:paramtypes", [NavController, NavParams, DetailsProvider, StorageProvider])
+        __metadata("design:paramtypes", [NavController, NavParams, DetailsProvider, StorageProvider, SocialSharing])
     ], EpisodePage);
     return EpisodePage;
 }());

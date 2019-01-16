@@ -33,6 +33,7 @@ export class DetailsPage {
       this.detailsProvider.getMovieDetails(this.movieId)
           .then(data =>{
               this.movie = data;
+              console.log(this.movie);
               if(this.movie != null){
                   this.movie.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.movie.imdbID;
                   this.storageProvider.get('favori').then((data) => {
@@ -45,6 +46,8 @@ export class DetailsPage {
                   });
               }
           });
+
+      console.log(this.movie);
   }
     addFavorite() {
         this.storageProvider.get('favori').then((data) => {

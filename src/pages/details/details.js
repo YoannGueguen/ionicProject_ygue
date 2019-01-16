@@ -11,6 +11,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DetailsProvider } from "../../providers/details/details";
 import { StorageProvider } from "../../providers/storage/storage";
+import { SocialSharing } from "@ionic-native/social-sharing";
 /**
  * Generated class for the DetailsPage page.
  *
@@ -89,7 +90,7 @@ var DetailsPage = /** @class */ (function () {
             selector: 'page-details',
             templateUrl: 'details.html',
         }),
-        __metadata("design:paramtypes", [NavController, NavParams, DetailsProvider, StorageProvider, Object])
+        __metadata("design:paramtypes", [NavController, NavParams, DetailsProvider, StorageProvider, SocialSharing])
     ], DetailsPage);
     return DetailsPage;
 }());

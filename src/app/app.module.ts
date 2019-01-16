@@ -22,6 +22,10 @@ import { DetailsProvider } from '../providers/details/details';
 import { StorageProvider } from '../providers/storage/storage';
 
 import {SocialSharing} from "@ionic-native/social-sharing";
+import { ImportListProvider } from '../providers/import-list/import-list';
+import { ExportListProvider } from '../providers/export-list/export-list';
+import {FileChooser} from "@ionic-native/file-chooser";
+import {FilePath} from "@ionic-native/file-path";
 
 
 @NgModule({
@@ -62,7 +66,11 @@ import {SocialSharing} from "@ionic-native/social-sharing";
     SeriesProvider,
     DetailsProvider,
     StorageProvider,
-    SocialSharing
+    SocialSharing,
+    ImportListProvider,
+    ExportListProvider,
+      FileChooser,
+      FilePath
   ]
 })
 export class AppModule {}

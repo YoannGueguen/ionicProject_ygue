@@ -12,7 +12,9 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { StorageProvider } from "../../providers/storage/storage";
 import { EpisodePage } from "../episode/episode";
 import { DetailsPage } from "../details/details";
-import { SeriesPage } from "../series/series";
+import { SerieDetailsPage } from "../serie-details/serie-details";
+import { ImportListProvider } from "../../providers/import-list/import-list";
+import { ExportListProvider } from "../../providers/export-list/export-list";
 /**
  * Generated class for the ListesPage page.
  *
@@ -20,9 +22,11 @@ import { SeriesPage } from "../series/series";
  * Ionic pages and navigation.
  */
 var ListesPage = /** @class */ (function () {
-    function ListesPage(navCtrl, storage) {
+    function ListesPage(navCtrl, storage, importListProvider, exportListProvider) {
         this.navCtrl = navCtrl;
         this.storage = storage;
+        this.importListProvider = importListProvider;
+        this.exportListProvider = exportListProvider;
         this.tabStorage = [];
     }
     ListesPage.prototype.ionViewWillEnter = function () {
@@ -33,15 +37,16 @@ var ListesPage = /** @class */ (function () {
         this.tabStorage.splice(this.tabStorage.indexOf(history), 1);
         this.storage.set('favori', this.tabStorage);
     };
-    ListesPage.prototype.openDetails = function (history) {
-        if (history.type == 'episode') {
-            this.navCtrl.push(EpisodePage, { serieId: history.id, seasonId: history.seasonId, episodeNumber: history.episodeId });
+    ListesPage.prototype.openDetails = function (historyId, seasonId, episodeId, type) {
+        console.log(type);
+        if (type == 'episode') {
+            this.navCtrl.push(EpisodePage, { serieId: historyId, seasonId: seasonId, episodeNumber: episodeId });
         }
-        else if (history.type == 'film') {
-            this.navCtrl.push(DetailsPage, { movieId: history.id });
+        else if (type == 'film') {
+            this.navCtrl.push(DetailsPage, { movieId: historyId });
         }
         else {
-            this.navCtrl.push(SeriesPage, { serieId: history.id });
+            this.navCtrl.push(SerieDetailsPage, { serieId: historyId });
         }
     };
     ListesPage.prototype.removeAll = function () {
@@ -54,7 +59,7 @@ var ListesPage = /** @class */ (function () {
             selector: 'page-listes',
             templateUrl: 'listes.html',
         }),
-        __metadata("design:paramtypes", [NavController, StorageProvider])
+        __metadata("design:paramtypes", [NavController, StorageProvider, ImportListProvider, ExportListProvider])
     ], ListesPage);
     return ListesPage;
 }());

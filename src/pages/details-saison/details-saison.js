@@ -38,7 +38,7 @@ var DetailsSaisonPage = /** @class */ (function () {
         });
     };
     DetailsSaisonPage.prototype.openDetails = function (episode) {
-        this.navCtrl.push(EpisodePage, { serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode.Episode });
+        this.navCtrl.push(EpisodePage, { serieId: this.serieId, seasonId: this.seasonId, episodeNumber: episode['Episode'] });
     };
     DetailsSaisonPage = __decorate([
         IonicPage(),

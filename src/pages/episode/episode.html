@@ -16,7 +16,7 @@
 <ion-content padding>
   <ion-card class='card' *ngIf="episode" class="movie-info">
 
-    <img *ngIf="episode.Poster" src="{{episode.Poster}}"/>
+    <img *ngIf="episode.Poster" src="{{episode.Poster}}" height="300"/>
     <ion-row *ngIf="episode.Poster">
       <ion-col>
         <button ion-button (click)="share(episode.Poster)" color="primary">

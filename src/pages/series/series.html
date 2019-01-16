@@ -17,20 +17,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class='page-content'>
-  <ion-grid>
+<ion-content padding>
     <ion-row>
-      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let serie of series' >
-
-        <ion-card class='card'  class="serie-info">
-          <ion-buttons>
-            <button class="card" ion-button full (click)="openDetails(serie.imdbID)">
+      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let serie of series' height="300">
+        <ion-card >
+            <button class="card-button" (click)="openDetails(serie.imdbID)">
+              <img *ngIf="serie.Poster" src="{{serie.Poster}}"/>
               <ion-card-title #popoverText  class="card-title">
                 {{serie.Title}}
               </ion-card-title>
-
-              <img *ngIf="serie.Poster" src="{{serie.Poster}}" class="serie-img"/>
-
               <div class="card-subtitle">
                 <ion-row>
                   <ion-col>
@@ -48,11 +43,7 @@
                 </ion-row>
               </div>
             </button>
-          </ion-buttons>
         </ion-card>
-
       </ion-col>
     </ion-row>
-  </ion-grid>
-
 </ion-content>
