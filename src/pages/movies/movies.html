@@ -17,18 +17,14 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class='page-content'>
-  <ion-grid>
-    <ion-row>
-      <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of movies' >
-
-        <ion-card class='card'>
-          <ion-buttons>
-            <button ion-button full (click)="openDetails(movie.imdbID)">
+<ion-content padding>
+  <ion-row>
+    <ion-col col-6 col-md-4 col-lg-2 *ngFor='let movie of movies' height="300">
+      <ion-card>
+        <button class="card-button" (click)="openDetails(movie.imdbID)">
           <ion-card-title #popoverText  class="card-title">
             {{movie.Title}}
           </ion-card-title>
-
           <img *ngIf="movie.Poster" src="{{movie.Poster}}"/>
           <div class="card-subtitle">
             <ion-row>
@@ -42,12 +38,8 @@
               </ion-col>
             </ion-row>
           </div>
-          </button>
-        </ion-buttons>
-        </ion-card>
-
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
+        </button>
+      </ion-card>
+    </ion-col>
+  </ion-row>
 </ion-content>

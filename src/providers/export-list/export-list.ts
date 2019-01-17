@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {StorageProvider} from "../storage/storage";
+//import {StorageProvider} from "../storage/storage";
 
 /*
   Generated class for the ExportListProvider provider.
@@ -11,10 +11,12 @@ import {StorageProvider} from "../storage/storage";
 @Injectable()
 export class ExportListProvider {
 
-  constructor(public http: HttpClient,private storageProvider: StorageProvider) {
+  constructor(public http: HttpClient
+              //,private storageProvider: StorageProvider
+  ) {
   }
   public toJSON(){
-    let tabStorage= this.storageProvider.get('favori');
+    //let tabStorage= this.storageProvider.get('favori');
 
   }
   public toCSV(){

@@ -15,11 +15,12 @@
 
 
 <ion-content padding>
-  <ion-card class='card' *ngIf="saison" class="serie-info">
-
-    <img *ngIf="saison.Poster" src="{{saison.Poster}}"/>
-
-    <div class="card-subtitle">
+  <ion-grid *ngIf="saison">
+    <ion-row *ngIf="saison.Poster">
+      <ion-col>
+        <img  src="{{saison.Poster}}"/>
+      </ion-col>
+    </ion-row>
       <ion-row>
         <ion-col>
           <ion-list *ngFor="let episode of saison.Episodes">
@@ -29,7 +30,6 @@
           </ion-list>
         </ion-col>
       </ion-row>
-    </div>
-  </ion-card>
+  </ion-grid>
 
 </ion-content>

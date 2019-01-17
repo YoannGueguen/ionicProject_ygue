@@ -34,9 +34,8 @@ export class SerieDetailsPage {
         this.detailsProvider.getSeasonDetails(serieId)
             .then(data =>{
                 this.serie = data;
-                if(this.serie != null){
-                    this.serie.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.serie.imdbID;
-                }
+                this.serie.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.serie.imdbID;
+
                 for (let i=0;i <this.serie.totalSeasons;i++ ){
                     this.seasonNumber.push(i+1);
                 }

@@ -4,8 +4,8 @@ import {StorageProvider} from "../../providers/storage/storage";
 import {EpisodePage} from "../episode/episode";
 import {DetailsPage} from "../details/details";
 import {SerieDetailsPage} from "../serie-details/serie-details";
-import {ImportListProvider} from "../../providers/import-list/import-list";
-import {ExportListProvider} from "../../providers/export-list/export-list";
+//import {ImportListProvider} from "../../providers/import-list/import-list";
+//import {ExportListProvider} from "../../providers/export-list/export-list";
 
 /**
  * Generated class for the ListesPage page.
@@ -21,7 +21,9 @@ import {ExportListProvider} from "../../providers/export-list/export-list";
 })
 export class ListesPage {
     public tabStorage = [];
-    constructor(public navCtrl: NavController, private storage: StorageProvider, private importListProvider: ImportListProvider, private exportListProvider: ExportListProvider) {
+    constructor(public navCtrl: NavController, private storage: StorageProvider
+                //, private importListProvider: ImportListProvider, private exportListProvider: ExportListProvider
+    ) {
     }
     ionViewWillEnter() {
       this.storage.get('favori').then((data)=>{this.tabStorage =data});

@@ -85,18 +85,20 @@ export class ImportListProvider {
     }
     private formatParsedObject(arr, hasTitles)
     {
-        let obj = [], date, title, type, id, seasonId, episodeId;
+        let obj = []
+            // , date, title, type, id, seasonId, episodeId
+        ;
 
         for(let j = 0; j < arr.length; j++){
             let items = arr[j];
             if(items.indexOf("") === -1){
                 if(hasTitles === true && j === 0){
-                    date = items[0];
+/*                    date = items[0];
                     title = items[1];
                     type = items[2];
                     id = items[3];
                     seasonId = items[4];
-                    episodeId = items[5];
+                    episodeId = items[5];*/
                 }
                 else
                 {
