@@ -12,12 +12,12 @@
     <ion-grid *ngIf="serie">
         <ion-row>
             <ion-col>
-                <img  src="{{serie.Poster}}"/>
+                <img src="{{serie.Poster}}"/>
             </ion-col>
         </ion-row>
-        <ion-row *ngIf="movie.Poster">
+        <ion-row *ngIf="serie.Poster">
             <ion-col>
-                <button ion-button (click)="share(movie.Poster)" color="primary">
+                <button ion-button *ngIf="serie" (click)="downloadImage(serie.Poster)" color="primary">
                     <ion-icon name="download"></ion-icon>
                 </button>
             </ion-col>

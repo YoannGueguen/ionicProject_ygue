@@ -22,7 +22,7 @@
     </ion-row>
     <ion-row *ngIf="movie.Poster">
       <ion-col>
-        <button ion-button (click)="share(movie.Poster)" color="primary">
+        <button ion-button *ngIf="movie" (click)="downloadImage(movie.Poster)" color="primary">
           <ion-icon name="download"></ion-icon>
         </button>
       </ion-col>

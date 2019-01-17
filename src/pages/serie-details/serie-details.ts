@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {DetailsProvider} from "../../providers/details/details";
 import {DetailsSaisonPage} from "../details-saison/details-saison";
 import {StorageProvider} from "../../providers/storage/storage";
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 /**
  * Generated class for the SerieDetailsPage page.
@@ -23,7 +24,7 @@ export class SerieDetailsPage {
     history = [];
     favori:boolean =false;
 
-    constructor(public navCtrl: NavController, public navParams: NavParams,public detailsProvider: DetailsProvider, private storageProvider: StorageProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams,public detailsProvider: DetailsProvider, private storageProvider: StorageProvider, private socialSharing: SocialSharing) {
     }
 
     goBack() {
@@ -34,6 +35,7 @@ export class SerieDetailsPage {
         this.detailsProvider.getSeasonDetails(serieId)
             .then(data =>{
                 this.serie = data;
+                if(this.serie != null)
                 this.serie.Poster = 'http://img.omdbapi.com/?apikey=75522b56&i=' + this.serie.imdbID;
 
                 for (let i=0;i <this.serie.totalSeasons;i++ ){
@@ -70,5 +72,12 @@ export class SerieDetailsPage {
         tabStorage.splice(tabStorage.indexOf(serie),1);
         this.storageProvider.set('favori', tabStorage);
         this.favori = false;
+    }
+    downloadImage(poster: string) {
+        this.socialSharing.saveToPhotoAlbum(poster)
+            .then(() => {
+            }).catch(() => {
+
+        })
     }
 }

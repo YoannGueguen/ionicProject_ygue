@@ -77,9 +77,8 @@ export class EpisodePage {
         this.storageProvider.set('favori', tabStorage);
         this.favori = false;
     }
-    share(poster: string) {
-
-        this.socialSharing.share('Partage de l image', null, poster, null)
+    downloadImage(poster: string) {
+        this.socialSharing.saveToPhotoAlbum(poster)
             .then(() => {
             }).catch(() => {
 
